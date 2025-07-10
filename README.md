@@ -40,7 +40,7 @@ A full-featured Service Desk Web Application built using **React (Vite)** and **
   visit the hosted app:  
    https://servicedesk-5d8a2.web.app/
    
-2. Register with their own email.
+2. Register with their own gmail.
 3. Then :
    - You manually update your role in Firestore as `"admin"` in the `users` collection, 
   
@@ -52,7 +52,7 @@ A full-featured Service Desk Web Application built using **React (Vite)** and **
  Frontend  :   React + Vite , HTML, CSS  
  Backend   :   Firebase Firestore ,  Firebase Auth 
  Hosting   :   Firebase Hosting
-              |
+              
 
 ---
 
