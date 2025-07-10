@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../../firebase/config"; 
@@ -7,41 +8,41 @@ const RaiseTicket = () => {
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("Low");
   const [category, setCategory] = useState("Technical");
-  const [file, setFile] = useState(null);
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const user = auth.currentUser;
-    if (!user) return toast.error("User not logged in");
+    try {
+      const user = auth.currentUser;
+      if (!user) return toast.error("User not logged in");
 
-    const ticketData = {
-      description,
-      priority,
-      category,
-      status: "open",
-      createdAt: serverTimestamp(),
-      userId: user.uid,
-    };
+      const ticketData = {
+        description,
+        priority,
+        category,
+        status: "open",
+        createdAt: serverTimestamp(),
+        userId: user.uid,
+      };
 
-    await addDoc(collection(db, "tickets"), ticketData);
+      await addDoc(collection(db, "tickets"), ticketData);
 
-    setDescription("");
-    setPriority("Low");
-    setCategory("Technical");
-    setFile(null);
+      setDescription("");
+      setPriority("Low");
+      setCategory("Technical");
 
-    toast.success("Ticket Submitted!");
-  } catch (error) {
-    console.error("Error submitting ticket:", error);
-    toast.error("Failed to submit ticket.");
-  }
-};
+      toast.success("Ticket Submitted!");
+    } catch (error) {
+      console.error("Error submitting ticket:", error);
+      toast.error("Failed to submit ticket.");
+    }
+  };
+
   return (
     <div style={styles.wrapper}>
       <form style={styles.form} onSubmit={handleSubmit}>
-        <h2 style={styles.logo}> Raise Your Issue</h2>
+        <h2 style={styles.logo}>Raise Your Issue</h2>
+
         <textarea
           placeholder="Issue Description"
           value={description}
@@ -70,12 +71,6 @@ const RaiseTicket = () => {
           <option>Account</option>
           <option>Other</option>
         </select>
-
-        <input
-          type="file"
-          onChange={(e) => setFile(e.target.files[0])}
-          style={styles.fileInput}
-        />
 
         <button type="submit" style={styles.submitBtn}>
           Submit Ticket
@@ -119,9 +114,6 @@ const styles = {
     padding: "10px",
     borderRadius: "8px",
     border: "1px solid #ccc",
-  },
-  fileInput: {
-    padding: "5px 0",
   },
   submitBtn: {
     backgroundColor: "#2a9d8f",
